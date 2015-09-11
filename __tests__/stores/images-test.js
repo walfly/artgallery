@@ -1,9 +1,11 @@
 jest.dontMock(__APPDIR__ + '/stores/images.js');
 jest.dontMock(__APPDIR__ + '/fixtures/images.js');
+jest.dontMock(__APPDIR__ + '/stores/image.js');
 var each = require('lodash/collection/each');
 
 describe('the images store', function () {
   var Images = require(__APPDIR__ + '/stores/images.js');
+  var Image = require(__APPDIR__ + '/stores/image.js');
   describe('initialization', function () {
     it('calls getImages', function () {
       var spy = spyOn(Images.prototype, 'getImages');
@@ -12,7 +14,13 @@ describe('the images store', function () {
     });
   });
   describe('getImages', function () {
-    it('returns a list of object with url and selected', function () {
+    it('creates a new Image for each item, and sets there parent reference to the images instance', function () {
+      var images = new Images();
+      var list = images.getImages();
+      expect(list[0] instanceof Image).toBeTruthy();
+      expect(list[0].parent).toEqual(images);
+    });
+    it('returns a list of Image objects with url and selected', function () {
       var list = Images.prototype.getImages();
       expect(list[0].url).toEqual(jasmine.any(String));
       expect(list[0].selected).toBeTruthy();

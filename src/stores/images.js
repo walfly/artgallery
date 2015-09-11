@@ -4,6 +4,8 @@ var map = require('lodash/collection/map');
 var each = require('lodash/collection/each');
 var findIndex = require('lodash/array/findindex');
 
+var Image = require('./image.js');
+
 var Images = function () {
   this.list = this.getImages();
 };
@@ -12,11 +14,12 @@ assign(Images.prototype, events.prototype, {
   getImages: function () {
     var list = require('../fixtures/images');
     return map(list, function (item, index) {
-      return {
+      return new Image({
         url: item,
-        selected: index === 0 ? true : false
-      };
-    });
+        selected: index === 9 ? true : false,
+        index: index
+      }, this);
+    }, this);
   },
   resetList: function () {
     each(this.list, function (item) {
