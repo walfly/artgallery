@@ -3,6 +3,7 @@ var events = require('events').EventEmitter;
 var map = require('lodash/collection/map');
 var each = require('lodash/collection/each');
 var findIndex = require('lodash/array/findindex');
+var dispatcher = require('../dispatcher.js');
 
 var Image = require('./image.js');
 
@@ -35,6 +36,11 @@ assign(Images.prototype, events.prototype, {
       return image.selected === true;
     });
   },
+  goToPreviouse: function () {
+    var prev = (this.currentSelected() + 1) % (this.list.length);
+    this.goToIndex(prev);
+    this.emitChange();
+  },
   goToNext: function () {
     var next = (this.currentSelected() + 1) % (this.list.length);
     this.goToIndex(next);
@@ -49,6 +55,7 @@ assign(Images.prototype, events.prototype, {
   removeChangeListener: function (callback) {
     this.removeListener('change', callback);
   }
+
 });
 
 module.exports = Images; 

@@ -1,9 +1,11 @@
 var React = require('react');
 var Carousel = require('./components/carousel.jsx');
+var Images = require('./stores/images.js');
 
-console.log('hello');
+
 
 React.render(
-  <Carousel copy={"hello"}/>,
+  <Carousel images={new Images()}/>,
   document.getElementById('app')
 );
+

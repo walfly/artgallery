@@ -4,8 +4,14 @@ var assign = require('object-assign');
 
 var ImageComponent = React.createClass({
   activeStyles: function (styles) {
-    if(this.props.image.distanceFromSelected() < 15){
+    if(this.props.image.distanceFromSelected() <= 5){
       return assign({}, styles, closeStyles);
+    }
+    return styles
+  },
+  beforeStyles: function (styles) {
+    if(!this.props.image.isPastSelected()){
+      return assign({}, styles, beforeStyles);
     }
     return styles
   },
@@ -50,11 +56,12 @@ var ImageComponent = React.createClass({
         container.style.marginLeft = "" + newWidth + "px";
       }
       el.style.left = "" + width + "px";
-      el.style.transform = "rotateY(  265deg ) translateX(-" + width + "px)";
+      el.style.transform = "rotateY(  285deg ) translateX(-" + width + "px)";
     }
   },
   styles: function () {
     var styles = this.activeStyles(wrapperStyle);
+    styles = this.beforeStyles(styles);
     return this.setZIndex(styles);
   },
   liClass: function () {
@@ -82,7 +89,12 @@ var wrapperStyle = {
   perspectiveOrigin: "center left",
   position: "absolute",
   display: "none",
-  height: "90%"
+  height: "90%",
+  paddingTop: "20px"
+};
+
+var beforeStyles = {
+  perspectiveOrigin: "center right",
 };
 
 var baseStyles = {
