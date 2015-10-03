@@ -17,7 +17,7 @@ assign(Images.prototype, events.prototype, {
     return map(list, function (item, index) {
       return new Image({
         url: item,
-        selected: index === 9 ? true : false,
+        selected: index === 0 ? true : false,
         index: index
       }, this);
     }, this);
@@ -36,13 +36,21 @@ assign(Images.prototype, events.prototype, {
       return image.selected === true;
     });
   },
+  getActiveImages: function () {
+    numberPerSide = 8;
+    var selIndex = this.currentSelected();
+    var min = Math.max(selIndex - numberPerSide, 0);
+    var max = Math.min(selIndex + numberPerSide, this.list.length - 1);
+    return this.list.slice(min, max);
+  },
   goToPreviouse: function () {
-    var prev = (this.currentSelected() + 1) % (this.list.length);
+    var selIndex = this.currentSelected();
+    var prev = Math.max(0, selIndex - 1);
     this.goToIndex(prev);
     this.emitChange();
   },
   goToNext: function () {
-    var next = (this.currentSelected() + 1) % (this.list.length);
+    var next = Math.min(this.currentSelected() + 1, this.list.length - 1);
     this.goToIndex(next);
     this.emitChange();
   },

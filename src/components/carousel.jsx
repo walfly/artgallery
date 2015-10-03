@@ -4,6 +4,9 @@ var times = require('lodash/utility/times');
 
 var Carousel = React.createClass({
   componentDidMount: function () {
+    this.setState({
+      baseOffsetWidth: this.selectedWidth()
+    });
     this.props.images.addChangeListener(this.onChange);
   },
   componentWillUnmount: function () {
@@ -11,30 +14,40 @@ var Carousel = React.createClass({
   },
   getInitialState: function () {
     return {
-      list: this.props.images.list
+      list: this.props.images.getActiveImages(),
+      baseOffsetWidth: 0,
     };
   },
-  setPositions: function () {
+  selectedWidth: function () {
     var selectedIndex = this.props.images.currentSelected();
-    var selectedWidth = this.refs["image" + selectedIndex].getActualWidth();
-    times(this.props.images.list.length, function (n) {
-      this.refs["image" + n].setPosition(selectedWidth);
-    }, this);
+    return this.refs["image" + selectedIndex].getActualWidth();
   },
   left: function () {
-    this.props.images.goToPrevious();
+    this.props.images.goToPreviouse();
   },
   right: function () {
     this.props.images.goToNext();
   },
   onChange: function () {
     this.setState({
-      list: this.props.images.list
+      list: this.props.images.getActiveImages(),
+      baseOffsetWidth: this.selectedWidth()
+    });
+  },
+  selectedImageLoaded: function () {
+    this.setState({
+      baseOffsetWidth: this.selectedWidth()
     });
   },
   render: function () {
     var imageList = this.state.list.map(function (item, index) {
-      return (<ImageComponent ref={"image" + index} setPositions={this.setPositions} key={item.index} image={item}/>)
+      return (<ImageComponent
+                ref={"image" + index}
+                selectedImageLoaded={this.selectedImageLoaded}
+                key={item.index}
+                image={item}
+                baseOffsetWidth={this.state.baseOffsetWidth}
+              />)
     },this);
     return (
       <div>

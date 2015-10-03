@@ -40,3 +40,30 @@ body{
   background-color: #fff;
   padding: 30px;
 }
+.wrapper-style{
+  left: 50%;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  perspective-origin: center left;
+  position: absolute;
+  display: inline-block;
+  visibility: hidden;
+  height: 90%;
+  padding-top: 20px;
+}
+.before-styles{
+  perspective-origin: center right;
+}
+
+.base-styles{
+  position: relative;
+  height: 100%;
+  left: 0;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.close-styles{
+  visibility: visible;
+}
+
