@@ -2,13 +2,12 @@ var assign = require('object-assign');
 var events = require('events').EventEmitter;
 var map = require('lodash/collection/map');
 var each = require('lodash/collection/each');
-var findIndex = require('lodash/array/findindex');
-var dispatcher = require('../dispatcher.js');
 
 var Image = require('./image.js');
 
 var Images = function () {
   this.list = this.getImages();
+  this.selected = 0;
 };
 
 assign(Images.prototype, events.prototype, {
@@ -17,30 +16,21 @@ assign(Images.prototype, events.prototype, {
     return map(list, function (item, index) {
       return new Image({
         url: item,
-        selected: index === 0 ? true : false,
         index: index
       }, this);
     }, this);
   },
-  resetList: function () {
-    each(this.list, function (item) {
-      item.selected = false;
-    });    
-  },
   goToIndex: function (index) {
-    this.resetList();
-    this.list[index].selected = true;
+    this.selected = index;
   },
   currentSelected: function () {
-    return findIndex(this.list, function (image) {
-      return image.selected === true;
-    });
+    return this.selected;
   },
   getActiveImages: function () {
     numberPerSide = 8;
     var selIndex = this.currentSelected();
     var min = Math.max(selIndex - numberPerSide, 0);
-    var max = Math.min(selIndex + numberPerSide, this.list.length - 1);
+    var max = Math.min(selIndex + numberPerSide, this.list.length);
     return this.list.slice(min, max);
   },
   goToPreviouse: function () {

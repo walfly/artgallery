@@ -5,7 +5,7 @@ var times = require('lodash/utility/times');
 var Carousel = React.createClass({
   componentDidMount: function () {
     this.setState({
-      baseOffsetWidth: this.selectedWidth()
+      baseOffsetWidth: this.selectedWidth(this.props.images.currentSelected())
     });
     this.props.images.addChangeListener(this.onChange);
   },
@@ -14,12 +14,13 @@ var Carousel = React.createClass({
   },
   getInitialState: function () {
     return {
+      selected: this.props.images.currentSelected(),
       list: this.props.images.getActiveImages(),
       baseOffsetWidth: 0,
     };
   },
-  selectedWidth: function () {
-    var selectedIndex = this.props.images.currentSelected();
+  selectedWidth: function (selectedIndex) {
+    console.log(selectedIndex, this.refs["image" + selectedIndex].getActualWidth());
     return this.refs["image" + selectedIndex].getActualWidth();
   },
   left: function () {
@@ -30,24 +31,27 @@ var Carousel = React.createClass({
   },
   onChange: function () {
     this.setState({
+      selected: this.props.images.currentSelected(),
       list: this.props.images.getActiveImages(),
-      baseOffsetWidth: this.selectedWidth()
+      baseOffsetWidth: this.selectedWidth(this.props.images.currentSelected())
     });
   },
   selectedImageLoaded: function () {
     this.setState({
-      baseOffsetWidth: this.selectedWidth()
+      baseOffsetWidth: this.selectedWidth(this.props.images.currentSelected())
     });
   },
   render: function () {
     var imageList = this.state.list.map(function (item, index) {
-      return (<ImageComponent
-                ref={"image" + index}
-                selectedImageLoaded={this.selectedImageLoaded}
-                key={item.index}
-                image={item}
-                baseOffsetWidth={this.state.baseOffsetWidth}
-              />)
+      return (
+        <ImageComponent
+          ref={"image" + item.index}
+          selectedImageLoaded={this.selectedImageLoaded}
+          selected={this.state.selected === item.index}
+          key={item.index}
+          image={item}
+          baseOffsetWidth={this.state.baseOffsetWidth} />
+      );
     },this);
     return (
       <div>

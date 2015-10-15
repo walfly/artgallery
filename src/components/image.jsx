@@ -7,11 +7,10 @@ var ImageComponent = React.createClass({
     return {
       elWidth: 0,
       containerWidth: 0,
-      loaded: false
     };
   },
   getActualWidth: function () {
-    return this.refs.image.getDOMNode().offsetWidth;
+    return this.state.containerWidth;
   },
   setZIndex: function (styles) {
     return this.props.image.distanceFromSelected() || 100;
@@ -20,20 +19,20 @@ var ImageComponent = React.createClass({
     var el = this.refs.image.getDOMNode();
     var container = this.refs.container.getDOMNode();
     var elWidth = el.offsetWidth/2;
-    if(this.props.image.selected){
-      this.props.selectedImageLoaded()
-    }
+    console.log("elWidth: " + elWidth + " containerWidth: " + container.offsetWidth + " index: " + this.props.image.index);
     this.setState({
       elWidth: elWidth,
       containerWidth: container.offsetWidth,
-      loaded: true
     });
+    if(this.props.selected){
+      this.props.selectedImageLoaded()
+    }
   },
   containerPosition: function () {
     var baseOffset = (this.props.baseOffsetWidth/2) + ((this.props.image.distanceFromSelected()-1) * 25)
     var styles = {};
     styles.zIndex = this.setZIndex();
-    if(this.props.image.selected){
+    if(this.props.selected){
       styles.marginLeft = "-" + this.state.elWidth + 'px';
       return styles;
     }
@@ -47,7 +46,7 @@ var ImageComponent = React.createClass({
   },
   imagePosition: function () {
     var styles = {};
-    if(this.props.image.selected){
+    if(this.props.selected){
       styles.transform = "rotateY(  0deg ) translateX(" + 0 + "px)" 
       styles.left = 0;
       return styles;
@@ -62,7 +61,7 @@ var ImageComponent = React.createClass({
     return styles;
   },
   liClass: function () {
-    var additionalClasses = this.props.image.selected ?
+    var additionalClasses = this.props.selected ?
       "image selected" :
       this.props.image.isPastSelected() ? 
         "image" : 
@@ -75,7 +74,7 @@ var ImageComponent = React.createClass({
       className += " before-styles";
     }
     var distanceFromSelected = this.props.image.distanceFromSelected()
-    if(distanceFromSelected <= 5){
+    if(distanceFromSelected <= 4){
       className += " close-styles";
     }
     return className;

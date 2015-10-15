@@ -2,7 +2,6 @@ var assign = require('object-assign');
 
 var Image = function (props, parent) {
   this.parent = parent;
-  this.selected = props.selected;
   this.url = props.url;
   this.index = props.index;
 };
