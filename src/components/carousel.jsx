@@ -55,7 +55,7 @@ var Carousel = React.createClass({
     },this);
     return (
       <div>
-        <ul style={styles}>
+        <ul className="carousel">
           {imageList}
         </ul>
         <button onClick={this.left}>Left</button>
@@ -64,16 +64,5 @@ var Carousel = React.createClass({
     );
   }
 });
-
-var styles = {
-  position: "relative",
-  backgroundColor: "#fff",
-  height: "100vh",
-  listStyle: "none",
-  padding: "0",
-  margin: "0",
-  overflowY: "hidden",
-  whiteSpace : "nowrap"
-};
 
 module.exports = Carousel;

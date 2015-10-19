@@ -22224,7 +22224,7 @@ var Carousel = React.createClass({displayName: "Carousel",
     },this);
     return (
       React.createElement("div", null, 
-        React.createElement("ul", {style: styles}, 
+        React.createElement("ul", {className: "carousel"}, 
           imageList
         ), 
         React.createElement("button", {onClick: this.left}, "Left"), 
@@ -22233,17 +22233,6 @@ var Carousel = React.createClass({displayName: "Carousel",
     );
   }
 });
-
-var styles = {
-  position: "relative",
-  backgroundColor: "#fff",
-  height: "100vh",
-  listStyle: "none",
-  padding: "0",
-  margin: "0",
-  overflowY: "hidden",
-  whiteSpace : "nowrap"
-};
 
 module.exports = Carousel;
 
@@ -22263,13 +22252,12 @@ var ImageComponent = React.createClass({displayName: "ImageComponent",
     return this.state.containerWidth;
   },
   setZIndex: function (styles) {
-    return this.props.image.distanceFromSelected() || 100;
+    return this.props.image.distanceFromSelected() || 0;
   },
   imageLoaded: function () {
     var el = this.refs.image.getDOMNode();
     var container = this.refs.container.getDOMNode();
     var elWidth = el.offsetWidth/2;
-    console.log("elWidth: " + elWidth + " containerWidth: " + container.offsetWidth + " index: " + this.props.image.index);
     this.setState({
       elWidth: elWidth,
       containerWidth: container.offsetWidth,
@@ -22279,7 +22267,8 @@ var ImageComponent = React.createClass({displayName: "ImageComponent",
     }
   },
   containerPosition: function () {
-    var baseOffset = (this.props.baseOffsetWidth/2) + ((this.props.image.distanceFromSelected()-1) * 25)
+    var separationFromSelected = 10;
+    var baseOffset = (this.props.baseOffsetWidth/2) + separationFromSelected + ((this.props.image.distanceFromSelected()-1) * 25)
     var styles = {};
     styles.zIndex = this.setZIndex();
     if(this.props.selected){
@@ -22306,7 +22295,7 @@ var ImageComponent = React.createClass({displayName: "ImageComponent",
       styles.transform = "rotateY(  75deg ) translateX(" + this.state.elWidth + "px)";
     } else {
       styles.left = "" + this.state.elWidth + "px";
-      styles.transform = "rotateY(  285deg ) translateX(-" + this.state.elWidth + "px)";
+      styles.transform = "rotateY(  -75deg ) translateX(-" + this.state.elWidth + "px)";
     }
     return styles;
   },
@@ -22324,7 +22313,7 @@ var ImageComponent = React.createClass({displayName: "ImageComponent",
       className += " before-styles";
     }
     var distanceFromSelected = this.props.image.distanceFromSelected()
-    if(distanceFromSelected <= 5){
+    if(distanceFromSelected <= 4){
       className += " close-styles";
     }
     return className;
