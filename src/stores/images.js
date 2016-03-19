@@ -12,7 +12,7 @@ var Images = function () {
 
 assign(Images.prototype, events.prototype, {
   getImages: function () {
-    var list = require('../fixtures/images');
+    var list = require('manifest');
     return map(list, function (item, index) {
       return new Image({
         url: item,

@@ -22166,7 +22166,7 @@ React.render(
   document.getElementById('app')
 );
 
-},{"./components/carousel.jsx":214,"./stores/images.js":218,"react":212}],214:[function(require,module,exports){
+},{"./components/carousel.jsx":214,"./stores/images.js":217,"react":212}],214:[function(require,module,exports){
 var React = require('react');
 var ImageComponent = require('./image.jsx');
 var times = require('lodash/utility/times');
@@ -22338,29 +22338,6 @@ var ImageComponent = React.createClass({displayName: "ImageComponent",
 module.exports = ImageComponent;
 
 },{"object-assign":56,"react":212,"react-imageloader":57}],216:[function(require,module,exports){
-module.exports = [
-  'http://i.imgur.com/nsGEXaN.jpg',
-  'https://c2.staticflickr.com/8/7796/18203420125_f123cf8e39_n.jpg',
-  'https://c1.staticflickr.com/9/8778/18199771182_431976421b_n.jpg',
-  'https://i.imgur.com/ifNu7fV.jpg',
-  'http://i.imgur.com/DdIdDvc.jpg',
-  'http://i.imgur.com/VaL6zo3.jpg',
-  'http://i.imgur.com/LNkDNDf.jpg',
-  'http://i.imgur.com/fPUIq6N.jpg',
-  'http://i.imgur.com/cQfHdQP.jpg',
-  'http://i.imgur.com/flLJTqh.jpg',
-  'http://static1.squarespace.com/static/550c57cde4b03b2ca7f13789/551032a3e4b0bc81228414aa/551038cbe4b0ffd939bee37e/1443108969988/Through+the+Trees.jpg?format=original',
-  'https://c2.staticflickr.com/6/5747/21348266934_e1280886fd_o.jpg',
-  'http://i.imgur.com/sTkGq2A.jpg',
-  'http://i.imgur.com/Tkbe7Mf.jpg',
-  'https://i.imgur.com/DjUycyM.jpg',
-  'http://i.imgur.com/aaKsSna.jpg',
-  'http://i.imgur.com/DY9h8fB.jpg',
-  'http://i.imgur.com/7Ja7WQJ.jpg',
-  'http://i.imgur.com/v7kP6ec.jpg',
-];
-
-},{}],217:[function(require,module,exports){
 var assign = require('object-assign');
 
 var Image = function (props, parent) {
@@ -22383,7 +22360,8 @@ assign(Image.prototype, {
 
 module.exports = Image;
 
-},{"object-assign":56}],218:[function(require,module,exports){
+},{"object-assign":56}],217:[function(require,module,exports){
+(function (global){
 var assign = require('object-assign');
 var events = require('events').EventEmitter;
 var map = require('lodash/collection/map');
@@ -22398,7 +22376,7 @@ var Images = function () {
 
 assign(Images.prototype, events.prototype, {
   getImages: function () {
-    var list = require('../fixtures/images');
+    var list = (typeof window !== "undefined" ? window['manifest'] : typeof global !== "undefined" ? global['manifest'] : null);
     return map(list, function (item, index) {
       return new Image({
         url: item,
@@ -22444,4 +22422,5 @@ assign(Images.prototype, events.prototype, {
 
 module.exports = Images; 
 
-},{"../fixtures/images":216,"./image.js":217,"events":1,"lodash/collection/each":4,"lodash/collection/map":6,"object-assign":56}]},{},[213]);
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./image.js":216,"events":1,"lodash/collection/each":4,"lodash/collection/map":6,"object-assign":56}]},{},[213]);
