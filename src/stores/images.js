@@ -5,17 +5,17 @@ var each = require('lodash/collection/each');
 
 var Image = require('./image.js');
 
-var Images = function () {
-  this.list = this.getImages();
+var Images = function (type) {
+  this.list = this.getImages(type);
   this.selected = 0;
 };
 
 assign(Images.prototype, events.prototype, {
-  getImages: function () {
-    var list = require('manifest');
+  getImages: function (type) {
+    var list = type === "art" ? require('manifestArt') : require('manifestInstallations');
     return map(list, function (item, index) {
       return new Image({
-        url: item,
+        item: item,
         index: index
       }, this);
     }, this);

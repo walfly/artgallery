@@ -37,7 +37,8 @@
     ]
   },
   "browserify-shim": {
-    "manifest": "global:manifest"
+    "manifestArt": "global:manifestArt",
+    "manifestInstallations": "global:manifestInstallations"
   },
   "browserify": {
     "transform": [
