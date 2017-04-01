@@ -58,8 +58,8 @@ var Carousel = React.createClass({
         <ul className="carousel">
           {imageList}
         </ul>
-        <button onClick={this.left}>Left</button>
-        <button onClick={this.right}>Right</button>
+        <div className="left-button" onClick={this.left}><div className="arrow"></div></div>
+        <div className="right-button"onClick={this.right}><div className="arrow"></div></div>
       </div>
     );
   }

@@ -77,7 +77,20 @@ var ImageComponent = React.createClass({
     if(distanceFromSelected <= 4){
       className += " close-styles";
     }
+    if(this.props.selected){
+      className += " selected";
+    }
     return className;
+  },
+  dimensionsInfo: function () {
+    if (Object.keys(this.props.image.item.dimensions).length === 0) {
+      return;
+    }
+    var dimStr = "" + this.props.image.item.dimensions.height + '" X ' + this.props.image.item.dimensions.width + '"';
+    if (this.props.image.item.dimensions.depth !== undefined) {
+      dimStr += " X " + this.props.image.item.dimensions.depth + '"';
+    }
+    return <p>{dimStr}</p>;
   },
   render: function () {
     return (
@@ -90,6 +103,12 @@ var ImageComponent = React.createClass({
             Image load failed!
           </ImageLoader>
         </li>
+        <div className="image-info">
+          <p><strong>{this.props.image.item.title}</strong></p>
+          {this.dimensionsInfo()}
+          <p>{this.props.image.item.materials}</p>
+          <p>{this.props.image.item.year}</p>
+        </div>
       </div>
     );
   }

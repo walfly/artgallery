@@ -40,7 +40,7 @@ window.manifestArt = [
       width: 16,
       height: 20,
       units: "inches"
-    }
+    },
     materials: "plaster, resin and moon gold on panel",
     year: 2017
   },
@@ -51,7 +51,7 @@ window.manifestArt = [
       width: 36,
       height: 48,
       units: "inches"
-    }
+    },
     materials: "dirt, resin and moon gold on panel",
     year: 2017
   },
@@ -62,7 +62,7 @@ window.manifestArt = [
       width: 24,
       height: 18,
       units: "inches"
-    }
+    },
     materials: "paint, mica powder and wax on panel",
     year: 2017
   },
@@ -84,7 +84,7 @@ window.manifestArt = [
       width: 12,
       height: 16,
       units: "inches"
-    }
+    },
     materials: "plaster, paint, and mica powder on panel",
     year: 2015
   },
@@ -95,7 +95,7 @@ window.manifestArt = [
       width: 24,
       height: 24,
       units: "inches"
-    }
+    },
     materials: "paint, mica powder and wax on panel",
     year: 2017
   },

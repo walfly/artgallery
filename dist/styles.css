@@ -1,10 +1,10 @@
 .carousel{
   position: relative;
   background-color: #fff;
-  height: 70vh;
+  height: 90vh;
   list-style: none;
   padding: 0;
-  margin: 20px;
+  margin: 10px;
   overflow-y: hidden;
   white-space : nowrap;
 }
@@ -38,12 +38,7 @@
   background: linear-gradient(to right,  rgba(76,76,76,0.65) 47%,rgba(80,80,80,0.65) 49%,rgba(133,133,133,0.5) 76%,rgba(150,150,150,0.5) 85%,rgba(255,255,255,0.5) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a64c4c4c', endColorstr='#80ffffff',GradientType=1 ); /* IE6-9 */
 }
-.image{
-  transition: box-shadow 0.6s;
-}
-.image.selected{
-  box-shadow: 0px 10px 5px #888, 0px -10px 5px #888;
-}
+
 .image.selected:before,.image.selected:after{
   opacity: 0;
 }
@@ -62,7 +57,7 @@ body{
   position: absolute;
   display: inline-block;
   visibility: hidden;
-  height: 90%;
+  height: 85%;
   padding-top: 20px;
   transition: margin 0.6s linear;
 }
@@ -73,11 +68,70 @@ body{
 
 .base-styles{
   position: relative;
-  height: 100%;
+  height: 80%;
   left: 0;
   padding: 10px;
-  background-color: #fff;
+  border: 1px solid #000;
   transition: transform 0.9s linear, left 0.6s linear;
+}
+
+.image-info{
+  margin-top: 45px;
+  display: none;
+}
+.image-info p{
+  font-family: "Gudea", sans-serif;
+  margin: 4px;
+  text-align: center;
+}
+
+.left-button{
+    margin: 0;
+    position: absolute;
+    width: 45%;
+    left: 0;
+    top: 0;
+    height: 90vh;
+    z-index: 999;
+}
+
+.right-button{
+    margin: 0;
+    position: absolute;
+    width: 45%;
+    right: 0;
+    top: 0;
+    height: 90vh;
+    z-index: 999;
+}
+
+.right-button .arrow {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  transform: rotate( 45deg );
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  top: 50%;
+  margin-top: -25px;
+  right: 20px;
+}
+
+.left-button .arrow {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  transform: rotate( 45deg );
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  top: 50%;
+  margin-top: -25px;
+  left: 20px;
+}
+
+
+.selected > .image-info{
+  display: block;
 }
 
 .close-styles{
