@@ -88,6 +88,17 @@ window.manifestArt = [
     materials: "plaster, paint, and mica powder on panel",
     year: 2015
   },
+  {
+    image: "https://s3.amazonaws.com/lydia-enriquez-art/art/hewasajunglecat.jpg",
+    title: "He was a Jungle Cat",
+    dimensions: {
+      width: 12,
+      height: 16,
+      units: "inches"
+    },
+    materials: "paint and moon gold on panel",
+    year: 2015
+  },
    {
     image: "https://s3.amazonaws.com/lydia-enriquez-art/art/lydia5.jpg",
     title: "untitled nocturne",
