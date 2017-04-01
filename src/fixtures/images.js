@@ -6,11 +6,11 @@ window.manifestArt = [
       width: 36,
       height: 36,
       units: "inches"
-    }
+    },
     materials: "plaster, paint, mica powder, and wax on panel with carving",
     year: 2017
   },
-    {
+  {
     image: "https://s3.amazonaws.com/lydia-enriquez-art/art/marble.jpg",
     title: "untitled tomne",
     dimensions: {
@@ -18,7 +18,7 @@ window.manifestArt = [
       height: 25,
       depth: 5,
       units: "inches"
-    }
+    },
     materials: "plaster, tint and wax on shaped panel",
     year: 2017
   },
@@ -29,7 +29,7 @@ window.manifestArt = [
       width: 48,
       height: 54,
       units: "inches"
-    }
+    },
     materials: "plaster, paint, and mica powder on panel",
     year: 2017
   },
@@ -56,7 +56,7 @@ window.manifestArt = [
     year: 2017
   },
    {
-    image: "ttps://s3.amazonaws.com/lydia-enriquez-art/art/lydia7+copy.jpg",
+    image: "https://s3.amazonaws.com/lydia-enriquez-art/art/lydia7+copy.jpg",
     title: "untitled",
     dimensions: {
       width: 24,
@@ -116,7 +116,7 @@ window.manifestInstallations = [
     materials: "an interior installation with wall, floor and hung components",
     year: 2016
   },
-    {
+  {
     image: "https://s3.amazonaws.com/lydia-enriquez-art/installations/16livingroom.jpg",
     title: "commissoned plaster for tribeca loft",
     dimensions: {},
@@ -130,4 +130,4 @@ window.manifestInstallations = [
     materials: "objects and background, plaster, paint, mica powder and wax",
     year: 2015
   }
-]
+];
